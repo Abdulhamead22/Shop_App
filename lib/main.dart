@@ -16,7 +16,7 @@ systemOverlayStyle: SystemUiOverlayStyle(
 ),
 WidgetsFlutterBinding.ensureInitialized(): هادا بتضمنلي انو كل async حيتنفذ
  */
-// hello
+// hello of abd of git
   String? isToken;
 void main() async {
 WidgetsFlutterBinding.ensureInitialized();
