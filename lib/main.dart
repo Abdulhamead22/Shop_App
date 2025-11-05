@@ -44,10 +44,11 @@ WidgetsFlutterBinding.ensureInitialized();
   ));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  final bool? isDark;
-  final Widget? startpage;
-  const MyApp({this.isDark,required this.startpage,  super.key});
+   bool? isDark;
+   Widget? startpage;
+   MyApp({this.isDark,required this.startpage,  super.key});
 
   // This widget is the root of your application.
   @override
