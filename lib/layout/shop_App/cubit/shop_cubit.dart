@@ -48,7 +48,7 @@ class ShopCubit extends Cubit<ShopState> {
     ),
   ];
 
-  HomeShopModel? homeModel;
+  late HomeShopModel homeModel;
   Map<int, bool> favorite = {};
   void getHomeData() {
     emit(ShopLoadingHomeDataState());
@@ -59,8 +59,8 @@ class ShopCubit extends Cubit<ShopState> {
       (value) {
         homeModel = HomeShopModel.fromJson(value!.data);
         //print("Response data: ${value!.data}");
-        print(homeModel!.status);
-        homeModel!.data.products.forEach(
+        print(homeModel.status);
+        homeModel.data.products.forEach(
           (element) {
             favorite.addAll({element.id: element.isFavorites});
           },
@@ -73,7 +73,7 @@ class ShopCubit extends Cubit<ShopState> {
     });
   }
 
-  CategoriesModel? categoriesModel;
+  late CategoriesModel categoriesModel;
   void getCategoriseData() {
     DioHelperShop.getData(
       url: 'categories',
@@ -81,7 +81,7 @@ class ShopCubit extends Cubit<ShopState> {
       (value) {
         categoriesModel = CategoriesModel.fromJson(value!.data);
         //print("Response data: ${value!.data}");
-        print(homeModel!.status);
+        print(homeModel.status);
         emit(ShopSuccessCatogiresState());
       },
     ).catchError((error) {
@@ -89,10 +89,10 @@ class ShopCubit extends Cubit<ShopState> {
     });
   }
 
-  ChangeFavoriteModel? changeFavoriteModel;
+  late ChangeFavoriteModel changeFavoriteModel;
   void chageFavorites(int productId) {
     favorite[productId] = !favorite[productId]!;
-    emit(ShopChangeFavoritesState(changeFavoriteModel!));
+    emit(ShopChangeFavoritesState(changeFavoriteModel));
     DioHelperShop.postData(
       url: 'favorites',
       token: isToken,
@@ -100,7 +100,7 @@ class ShopCubit extends Cubit<ShopState> {
     ).then(
       (value) {
         changeFavoriteModel = ChangeFavoriteModel.fromjosn(value!.data);
-        if (changeFavoriteModel!.status == false) {
+        if (changeFavoriteModel.status == false) {
           favorite[productId] = !favorite[productId]!;
         }
         emit(ShopSuccessFavoritesState());
@@ -111,7 +111,7 @@ class ShopCubit extends Cubit<ShopState> {
     });
   }
 
-  ShopLoginModel? userModel;
+  late ShopLoginModel userModel;
   void getUserData() {
     emit(ShopLoadingUserDataState());
     DioHelperShop.getData(
@@ -142,7 +142,7 @@ class ShopCubit extends Cubit<ShopState> {
       (value) {
         userModel = ShopLoginModel.fromJson(value!.data);
 
-        emit(ShopSuccessUpdateUserState(userModel!));
+        emit(ShopSuccessUpdateUserState(userModel));
       },
     ).catchError((error) {
       emit(ShopErorrUpdateUserState());
