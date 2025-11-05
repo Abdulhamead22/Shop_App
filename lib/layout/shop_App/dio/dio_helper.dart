@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class DioHelperShop {
-  static Dio? dio;
+  static late Dio dio;
 
   static init() {
     //عملتها عشان اول ما يفتح يعرفلي الديو
@@ -17,13 +17,13 @@ class DioHelperShop {
     String lang = "en",
     String? token,
   }) async {
-    dio!.options.headers = {
+    dio.options.headers = {
       'Content-Type': 'application/json',
       'lang': lang,
     'Authorization':token??'',
     };
 
-    return await dio?.get(
+    return await dio.get(
       url,
       queryParameters: query,
     );
@@ -36,12 +36,12 @@ class DioHelperShop {
     String lang = "en",
     String? token,
   }) async {
-    dio!.options.headers = {
+    dio.options.headers = {
       'Content-Type': 'application/json',
       'lang': lang,
       'Authorization':token??'',
       };
-    return await dio?.post(
+    return await dio.post(
       url,
       queryParameters: query,
       data: data,
@@ -55,12 +55,12 @@ class DioHelperShop {
     String lang = "en",
     String? token,
   }) async {
-    dio!.options.headers = {
+    dio.options.headers = {
       'Content-Type': 'application/json',
       'lang': lang,
       'Authorization':token??'',
       };
-    return await dio?.put(
+    return await dio.put(
       url,
       queryParameters: query,
       data: data,

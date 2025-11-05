@@ -3,7 +3,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
-  static SharedPreferences? sharedPreferences;
+  static late SharedPreferences sharedPreferences;
 
   static init() async {
     //هيك بكون عرفت sharedpreferences
@@ -15,14 +15,14 @@ class CacheHelper {
     required String key,
     required bool value,
   }) async {
-    return await sharedPreferences!.setBool(key, value);
+    return await sharedPreferences.setBool(key, value);
   }
 
   //كيف حجيب
   static dynamic getData({
     required String key,
   }) {
-    return sharedPreferences?.get(key);
+    return sharedPreferences.get(key);
   }
 
 //عن طريقها بحفظ اي حاجة مهما كان النوع
@@ -31,13 +31,13 @@ class CacheHelper {
     required dynamic value,
   }) async {
       if (value is String) {
-    return await sharedPreferences!.setString(key, value);
+    return await sharedPreferences.setString(key, value);
   } else if (value is int) {
-    return await sharedPreferences!.setInt(key, value);
+    return await sharedPreferences.setInt(key, value);
   } else if (value is bool) {
-    return await sharedPreferences!.setBool(key, value);
+    return await sharedPreferences.setBool(key, value);
   } else if (value is double) {
-    return await sharedPreferences!.setDouble(key, value);
+    return await sharedPreferences.setDouble(key, value);
   } else {
     throw Exception("Unsupported value type");
   }
@@ -49,7 +49,7 @@ class CacheHelper {
     
   }) async {
   
-    return sharedPreferences!.remove(key);
+    return sharedPreferences.remove(key);
   }
   
 }
